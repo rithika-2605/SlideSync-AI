@@ -1,0 +1,166 @@
+/* Container & Header */
+.premium-flashcard-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
+}
+
+.icon-wrapper {
+  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.premium-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #1e293b, #475569);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.premium-grid {
+  display: grid;
+  /* Made the minimum width larger so cards don't squish */
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+  /* Dramatically increased the gap to separate the cards */
+  gap: 3.5rem; 
+  padding: 1rem;
+}
+
+/* The 3D Scene Setup */
+.card-scene {
+  perspective: 1000px; /* Gives the 3D depth effect */
+  cursor: pointer;
+  height: 280px;
+}
+
+.card-object {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d; /* Keeps children in 3D space */
+}
+
+/* The Flip Trigger */
+.card-object.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Floating Hover Effect (Only applies when not flipped) */
+.card-scene:hover .card-object:not(.is-flipped) {
+  transform: translateY(-8px) scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Card Faces (Front & Back) */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hides the back of the element when turned away */
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Specific Front Styling (Question) */
+.card-front {
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+}
+
+/* Specific Back Styling (Answer) */
+.card-back {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  color: white;
+  transform: rotateY(180deg); /* Starts flipped around */
+}
+
+/* Badges */
+.card-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.front-badge {
+  background-color: #eff6ff;
+  color: #3b82f6;
+}
+
+.back-badge {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+/* Typography */
+.question-text {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.answer-text {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #e2e8f0;
+  line-height: 1.6;
+  margin: 0;
+  overflow-y: auto; /* Adds scroll if answer is too long */
+  padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar for long answers */
+.answer-text::-webkit-scrollbar {
+  width: 4px;
+}
+.answer-text::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.card-footer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.flip-hint {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
